@@ -13,7 +13,7 @@ func (s *Server) RegisterRoutes() http.Handler {
 	e.Use(middleware.Recover())
 
 	e.GET("/", s.HelloWorldHandler)
-	e.GET("/health", s.healthHandler)
+	e.GET("/health", s.HealthHandler)
 
 	return e
 }
@@ -26,6 +26,6 @@ func (s *Server) HelloWorldHandler(c echo.Context) error {
 	return c.JSON(http.StatusOK, resp)
 }
 
-func (s *Server) healthHandler(c echo.Context) error {
-	return c.JSON(http.StatusOK, s.db.Health())
+func (s *Server) HealthHandler(c echo.Context) error {
+	return c.JSON(http.StatusOK, s.DB.Health())
 }
